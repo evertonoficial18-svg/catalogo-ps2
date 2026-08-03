@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo PS2</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+:root{
+  --bg-deep:#0b0f1a;
+  --bg-panel:#131829;
+  --bg-card:#161d33;
+  --ice:#5ec8e8;
+  --violet:#8f7fd1;
+  --gold:#f2c14e;
+  --text-primary:#eef1f7;
+  --text-muted:#8891a8;
+  --border:#232b45;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+
+body{
+  background:var(--bg-deep);
+  color:var(--text-primary);
+  font-family:'IBM Plex Sans', sans-serif;
+  min-height:100vh;
+}
+
+.mono{ font-family:'IBM Plex Mono', monospace; }
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  padding:64px 24px 56px;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+  background:
+    radial-gradient(ellipse at 20% -10%, rgba(94,200,232,0.14), transparent 55%),
+    radial-gradient(ellipse at 85% 0%, rgba(143,127,209,0.12), transparent 50%),
+    var(--bg-panel);
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  top:-40%; left:-10%;
+  width:60%; height:220%;
+  background:linear-gradient(100deg, transparent 40%, rgba(255,255,255,0.05) 48%, rgba(94,200,232,0.14) 50%, rgba(255,255,255,0.05) 52%, transparent 60%);
+  animation:sheen 9s ease-in-out infinite;
+}
+@keyframes sheen{
+  0%,100%{ transform:translateX(-10%) rotate(0deg); }
+  50%{ transform:translateX(60%) rotate(3deg); }
+}
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  letter-spacing:0.28em;
+  color:var(--ice);
+  text-transform:uppercase;
+  position:relative;
+}
+.hero h1{
+  font-family:'Rajdhani', sans-serif;
+  font-weight:700;
+  font-size:clamp(38px, 7vw, 64px);
+  letter-spacing:0.03em;
+  margin:10px 0 12px;
+  position:relative;
+  background:linear-gradient(180deg, #fff, var(--ice));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.hero p{
+  color:var(--text-muted);
+  font-size:15px;
+  max-width:480px;
+  margin:0 auto;
+  position:relative;
+}
+.hero-meta{
+  margin-top:26px;
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+  position:relative;
+}
+.hero-meta span{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  color:var(--text-muted);
+  border:1px solid var(--border);
+  padding:6px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.02);
+}
+.hero-meta b{ color:var(--ice); font-weight:500; }
+
+.contact-links{
+  margin-top:18px;
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  position:relative;
+}
+.contact-links a{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-family:'IBM Plex Sans', sans-serif;
+  font-size:13px;
+  font-weight:600;
+  text-decoration:none;
+  color:var(--bg-deep);
+  background:var(--ice);
+  padding:9px 16px;
+  border-radius:999px;
+  transition:filter .2s ease, transform .2s ease;
+}
+.contact-links a.insta{
+  background:var(--violet);
+}
+.contact-links a:hover{
+  filter:brightness(1.1);
+  transform:translateY(-1px);
+}
+.contact-links svg{ width:16px; height:16px; flex-shrink:0; }
+
+.wrap{ max-width:1080px; margin:0 auto; padding:44px 24px 120px; }
+
+.section-title{
+  font-family:'Rajdhani', sans-serif;
+  font-size:22px;
+  font-weight:600;
+  letter-spacing:0.02em;
+  margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.section-title::before{
+  content:"";
+  width:6px; height:22px;
+  background:var(--ice);
+  display:inline-block;
+  border-radius:2px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+  gap:22px;
+}
+
+.filter-bar{
+  display:flex;
+  gap:12px;
+  margin-bottom:24px;
+  flex-wrap:wrap;
+}
+.filter-bar input[type=text]{
+  flex:1;
+  min-width:200px;
+  padding:11px 14px;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  color:var(--text-primary);
+  font-size:14px;
+  font-family:'IBM Plex Sans', sans-serif;
+}
+.filter-bar select{
+  padding:11px 14px;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  color:var(--text-primary);
+  font-size:14px;
+  font-family:'IBM Plex Sans', sans-serif;
+  min-width:160px;
+}
+.filter-bar input:focus, .filter-bar select:focus{ outline:none; border-color:var(--ice); }
+
+.card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer;
+  transition:border-color .25s ease, transform .25s ease;
+}
+.card:hover{
+  border-color:rgba(94,200,232,0.5);
+  transform:translateY(-3px);
+}
+.card.selected{
+  border-color:var(--ice);
+  box-shadow:0 0 0 1px var(--ice);
+}
+.card .check{
+  position:absolute;
+  top:10px; left:10px;
+  width:26px; height:26px;
+  border-radius:7px;
+  background:rgba(11,15,26,0.75);
+  border:1.5px solid rgba(255,255,255,0.35);
+  z-index:2;
+  display:flex; align-items:center; justify-content:center;
+  color:transparent;
+  font-size:15px;
+  transition:all .2s ease;
+}
+.card.selected .check{
+  background:var(--ice);
+  border-color:var(--ice);
+  color:#062430;
+}
+.card .cover{
+  position:relative;
+  width:100%;
+  aspect-ratio:3/4;
+  background:#0d1220;
+  overflow:hidden;
+}
+.card .cover img{
+  width:100%; height:100%; object-fit:cover;
+  display:block;
+}
+.card .disc{
+  position:absolute;
+  top:10px; right:10px;
+  width:26px; height:26px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #dfe9ee, #9fb3bd 40%, #4c5a63 100%);
+  box-shadow:0 0 0 2px rgba(0,0,0,0.35);
+  opacity:0;
+  transform:rotate(0deg) scale(0.6);
+  transition:opacity .3s ease, transform .5s ease;
+}
+.card:hover .disc{ opacity:1; transform:rotate(220deg) scale(1); }
+.card .sheen{
+  position:absolute; inset:0;
+  background:linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.16) 50%, transparent 60%);
+  transform:translateX(-120%);
+  transition:transform .7s ease;
+  pointer-events:none;
+}
+.card:hover .sheen{ transform:translateX(120%); }
+
+.card .info{ padding:14px 16px 16px; }
+.card .badge{
+  display:inline-block;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:10px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--violet);
+  background:rgba(143,127,209,0.12);
+  border:1px solid rgba(143,127,209,0.3);
+  padding:2px 8px;
+  border-radius:999px;
+  margin-bottom:8px;
+}
+.card .badge.unavailable{
+  color:#e0a85e;
+  background:rgba(224,168,94,0.12);
+  border-color:rgba(224,168,94,0.3);
+}
+.card h3{
+  font-family:'Rajdhani', sans-serif;
+  font-size:19px;
+  font-weight:600;
+  line-height:1.2;
+  margin-bottom:6px;
+}
+.card .desc{
+  font-size:13px;
+  color:var(--text-muted);
+  line-height:1.5;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+.empty{
+  text-align:center;
+  padding:70px 20px;
+  color:var(--text-muted);
+  border:1px dashed var(--border);
+  border-radius:12px;
+}
+.empty h3{
+  font-family:'Rajdhani', sans-serif;
+  font-size:22px;
+  color:var(--text-primary);
+  margin-bottom:8px;
+}
+
+.admin-toggle{
+  position:fixed;
+  bottom:20px; right:20px;
+  width:46px; height:46px;
+  border-radius:50%;
+  background:var(--bg-panel);
+  border:1px solid var(--border);
+  color:var(--text-muted);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  font-size:18px;
+  z-index:40;
+  transition:all .2s ease;
+}
+.admin-toggle:hover{ color:var(--ice); border-color:var(--ice); }
+
+.selbar{
+  position:fixed;
+  left:0; right:0; bottom:0;
+  background:var(--bg-panel);
+  border-top:1px solid var(--border);
+  padding:14px 24px;
+  display:none;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  z-index:35;
+  flex-wrap:wrap;
+}
+.selbar.show{ display:flex; }
+.selbar .count{ font-family:'Rajdhani', sans-serif; font-size:16px; font-weight:600; }
+.selbar .count b{ color:var(--ice); }
+.selbar .actions{ display:flex; gap:10px; }
+.selbar button{
+  padding:10px 18px;
+  border-radius:8px;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--text-primary);
+  font-size:13px;
+  cursor:pointer;
+  font-family:'IBM Plex Sans', sans-serif;
+}
+.selbar button.primary{ background:var(--ice); color:#062430; border-color:var(--ice); font-weight:600; }
+.selbar button:hover{ border-color:var(--ice); }
+
+.modal-bg{
+  position:fixed; inset:0;
+  background:rgba(6,8,14,0.75);
+  display:none;
+  align-items:center; justify-content:center;
+  z-index:50;
+  padding:20px;
+}
+.modal-bg.open{ display:flex; }
+.modal{
+  background:var(--bg-panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  width:100%; max-width:440px;
+  padding:28px;
+  max-height:85vh;
+  overflow-y:auto;
+}
+.modal h2{
+  font-family:'Rajdhani', sans-serif;
+  font-size:22px;
+  margin-bottom:16px;
+}
+.modal input{
+  width:100%;
+  padding:11px 13px;
+  background:var(--bg-deep);
+  border:1px solid var(--border);
+  border-radius:8px;
+  color:var(--text-primary);
+  font-size:14px;
+  margin-bottom:14px;
+}
+.modal input:focus{ outline:none; border-color:var(--ice); }
+.btn{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:none;
+  background:var(--ice);
+  color:#062430;
+  font-weight:600;
+  font-size:14px;
+  cursor:pointer;
+  font-family:'IBM Plex Sans', sans-serif;
+}
+.btn:hover{ filter:brightness(1.08); }
+.btn.secondary{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--text-muted);
+  margin-top:8px;
+}
+.btn.gold{ background:var(--gold); color:#3a2a06; }
+.err-msg{ color:#e08585; font-size:13px; margin:-8px 0 12px; min-height:16px; }
+
+.list-items{ list-style:none; margin:0 0 16px; padding:0; }
+.list-items li{
+  padding:9px 0;
+  border-bottom:1px solid var(--border);
+  font-size:14px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+.list-items li button{
+  background:none; border:none; color:var(--text-muted);
+  cursor:pointer; font-size:14px;
+}
+.list-items li button:hover{ color:#e08585; }
+.list-text{
+  width:100%;
+  background:var(--bg-deep);
+  border:1px solid var(--border);
+  border-radius:8px;
+  color:var(--text-primary);
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  padding:12px;
+  min-height:120px;
+  margin-bottom:14px;
+  resize:vertical;
+}
+
+.admin-panel{ display:none; }
+.admin-panel.open{ display:block; }
+.admin-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.admin-bar h2{ font-family:'Rajdhani', sans-serif; font-size:24px; }
+.linkbtn{
+  background:none; border:none; color:var(--ice);
+  font-size:13px; cursor:pointer; text-decoration:underline;
+  font-family:'IBM Plex Sans', sans-serif;
+}
+.notice{
+  background:rgba(242,193,78,0.08);
+  border:1px solid rgba(242,193,78,0.3);
+  color:#f2c14e;
+  border-radius:10px;
+  padding:14px 16px;
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:24px;
+}
+.form-card{
+  background:var(--bg-panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:24px;
+  margin-bottom:32px;
+}
+.form-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+.form-row.full{ grid-template-columns:1fr; }
+label{ display:block; font-size:12px; color:var(--text-muted); margin-bottom:6px; }
+input[type=text], textarea, select{
+  width:100%;
+  padding:10px 12px;
+  background:var(--bg-deep);
+  border:1px solid var(--border);
+  border-radius:7px;
+  color:var(--text-primary);
+  font-size:14px;
+  font-family:'IBM Plex Sans', sans-serif;
+}
+textarea{ resize:vertical; min-height:70px; }
+input:focus, textarea:focus, select:focus{ outline:none; border-color:var(--ice); }
+.upload-box{
+  border:1px dashed var(--border);
+  border-radius:8px;
+  padding:16px;
+  text-align:center;
+  cursor:pointer;
+  color:var(--text-muted);
+  font-size:13px;
+  position:relative;
+}
+.upload-box img{ max-height:110px; border-radius:6px; margin-bottom:8px; }
+.upload-box input{ position:absolute; inset:0; opacity:0; cursor:pointer; }
+
+.admin-list{ display:flex; flex-direction:column; gap:10px; }
+.admin-row{
+  display:flex; align-items:center; gap:14px;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:10px 14px;
+}
+.admin-row img{ width:44px; height:58px; object-fit:cover; border-radius:5px; flex-shrink:0; background:#0d1220; }
+.admin-row .meta{ flex:1; min-width:0; }
+.admin-row .meta strong{ font-size:14px; display:block; }
+.admin-row .meta span{ font-size:12px; color:var(--text-muted); }
+.admin-row .actions{ display:flex; gap:8px; }
+.icon-btn{
+  background:none; border:1px solid var(--border);
+  color:var(--text-muted);
+  width:32px; height:32px; border-radius:7px;
+  cursor:pointer; font-size:14px;
+}
+.icon-btn:hover{ color:var(--ice); border-color:var(--ice); }
+.icon-btn.danger:hover{ color:#e08585; border-color:#e08585; }
+
+.status-msg{ font-size:13px; color:var(--text-muted); margin-top:10px; min-height:18px; }
+.loading{ text-align:center; color:var(--text-muted); padding:60px 0; font-size:14px; }
+
+.download-bar{
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:var(--gold);
+  color:#3a2a06;
+  padding:12px 20px;
+  border-radius:10px;
+  display:none;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:24px;
+  font-size:13px;
+  font-weight:600;
+  flex-wrap:wrap;
+}
+.download-bar.show{ display:flex; }
+.download-bar button{
+  background:#3a2a06;
+  color:#f2c14e;
+  border:none;
+  padding:9px 16px;
+  border-radius:7px;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  font-family:'IBM Plex Sans', sans-serif;
+}
+
+footer{ text-align:center; padding:26px; color:var(--text-muted); font-size:12px; }
+footer a{ color:var(--ice); text-decoration:none; }
+footer a:hover{ text-decoration:underline; }
+
+@media(max-width:520px){
+  .form-row{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="eyebrow">Gravação em pen drive</div>
+  <h1>Catálogo PS2</h1>
+  <p>Veja os jogos disponíveis, marque os que você quer e mostre a lista pra gente na hora de gravar seu pen drive.</p>
+  <div class="hero-meta">
+    <span><b id="stat-count">0</b> jogos no catálogo</span>
+  </div>
+  <div class="contact-links">
+    <a href="https://wa.me/5583996583166" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.03c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.81-.11-.42-.13-.95-.31-1.64-.6-2.88-1.24-4.76-4.13-4.9-4.32-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.14.07.14.12.31.02.5-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.14-.3.3-.13.59.17.29.76 1.25 1.63 2.02 1.12 1 2.06 1.31 2.35 1.46.29.14.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.64-.14.26.1 1.66.78 1.94.92.29.14.48.21.55.33.07.12.07.68-.17 1.36z"/></svg>
+      WhatsApp
+    </a>
+    <a href="https://instagram.com/evertonoficial18" target="_blank" rel="noopener" class="insta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+      @evertonoficial18
+    </a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div id="publicView">
+    <div class="section-title">Jogos disponíveis</div>
+    <div class="filter-bar">
+      <input type="text" id="searchInput" placeholder="Buscar pelo nome do jogo...">
+      <select id="genreFilter">
+        <option value="">Todos os gêneros</option>
+      </select>
+    </div>
+    <div id="catalogArea"><div class="loading">Carregando catálogo…</div></div>
+  </div>
+
+  <div id="adminPanel" class="admin-panel">
+    <div class="admin-bar">
+      <h2>Área do lojista</h2>
+      <button class="linkbtn" id="backToCatalog">← Ver catálogo</button>
+    </div>
+
+    <div class="notice">
+      Este site é estático (GitHub Pages), então as mudanças feitas aqui existem só neste navegador.
+      Depois de adicionar ou editar jogos, clique em <b>"Baixar games.js atualizado"</b> abaixo e substitua
+      o arquivo <b>games.js</b> no seu repositório do GitHub. Em cerca de 1 minuto o site publicado atualiza para todo mundo.
+    </div>
+
+    <div class="download-bar" id="downloadBar">
+      Você tem alterações não publicadas no site.
+      <button id="downloadBtn">Baixar games.js atualizado</button>
+    </div>
+
+    <div class="form-card">
+      <div class="form-row full">
+        <div>
+          <label>Capa do jogo</label>
+          <div class="upload-box" id="uploadBox">
+            <span id="uploadHint">Toque para escolher uma imagem</span>
+            <input type="file" accept="image/*" id="imgInput">
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Nome do jogo</label>
+          <input type="text" id="fTitle" placeholder="Ex: God of War II">
+        </div>
+        <div>
+          <label>Gênero (opcional)</label>
+          <input type="text" id="fGenre" placeholder="Ex: Ação / Aventura">
+        </div>
+      </div>
+      <div class="form-row">
+        <div>
+          <label>Disponibilidade</label>
+          <select id="fStock">
+            <option selected>Disponível</option>
+            <option>Sob consulta</option>
+          </select>
+        </div>
+        <div></div>
+      </div>
+      <div class="form-row full">
+        <div>
+          <label>Descrição (opcional)</label>
+          <textarea id="fDesc" placeholder="Detalhes sobre o jogo: multiplayer, tamanho, versão, etc."></textarea>
+        </div>
+      </div>
+      <button class="btn" id="saveBtn">Adicionar ao catálogo</button>
+      <div class="status-msg" id="formStatus"></div>
+    </div>
+
+    <div class="section-title">Jogos cadastrados</div>
+    <div id="adminList" class="admin-list"></div>
+  </div>
+
+</div>
+
+<button class="admin-toggle" id="adminToggle" title="Área do lojista">🔒</button>
+
+<div class="selbar" id="selBar">
+  <div class="count"><b id="selCount">0</b> jogos selecionados</div>
+  <div class="actions">
+    <button id="clearSelBtn">Limpar</button>
+    <button class="primary" id="viewListBtn">Ver minha lista</button>
+  </div>
+</div>
+
+<div class="modal-bg" id="loginModal">
+  <div class="modal">
+    <h2>Área do lojista</h2>
+    <input type="text" id="pwInput" placeholder="Senha de acesso" autocomplete="off">
+    <div class="err-msg" id="pwError"></div>
+    <button class="btn" id="pwSubmit">Entrar</button>
+    <button class="btn secondary" id="pwCancel">Cancelar</button>
+  </div>
+</div>
+
+<div class="modal-bg" id="listModal">
+  <div class="modal">
+    <h2>Sua lista de jogos</h2>
+    <ul class="list-items" id="listItems"></ul>
+    <label>Texto pronto pra enviar (copie e mande pra gente)</label>
+    <textarea class="list-text" id="listText" readonly></textarea>
+    <button class="btn" id="copyListBtn">Copiar lista</button>
+    <button class="btn secondary" id="closeListBtn">Fechar</button>
+  </div>
+</div>
+
+<footer>Catálogo PS2 — monte sua lista e traga junto com o pen drive.<br>
+Contato: <a href="https://wa.me/5583996583166" target="_blank" rel="noopener">WhatsApp</a> · <a href="https://instagram.com/evertonoficial18" target="_blank" rel="noopener">@evertonoficial18</a></footer>
+
+<script src="games.js"></script>
+<script>
+// AVISO: esta senha fica visível no código-fonte da página (comum em sites estáticos
+// sem servidor). Ela serve só para evitar que um cliente distraído abra o painel sem
+// querer — não é uma proteção forte. Troque o valor abaixo se quiser outra senha.
+const ADMIN_PASSWORD = "ps2loja2026";
+
+let games = (typeof GAMES_DATA !== 'undefined' && Array.isArray(GAMES_DATA)) ? JSON.parse(JSON.stringify(GAMES_DATA)) : [];
+let editingId = null;
+let pendingImage = null;
+let selected = new Set();
+let searchTerm = '';
+let genreFilter = '';
+let hasUnsavedChanges = false;
+
+const catalogArea = document.getElementById('catalogArea');
+const adminList = document.getElementById('adminList');
+const publicView = document.getElementById('publicView');
+const adminPanel = document.getElementById('adminPanel');
+const adminToggle = document.getElementById('adminToggle');
+const loginModal = document.getElementById('loginModal');
+const listModal = document.getElementById('listModal');
+const pwInput = document.getElementById('pwInput');
+const pwError = document.getElementById('pwError');
+const statCount = document.getElementById('stat-count');
+const formStatus = document.getElementById('formStatus');
+const selBar = document.getElementById('selBar');
+const selCount = document.getElementById('selCount');
+const searchInput = document.getElementById('searchInput');
+const genreFilterEl = document.getElementById('genreFilter');
+const downloadBar = document.getElementById('downloadBar');
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.innerText = str;
+  return d.innerHTML;
+}
+
+function markUnsaved(){
+  hasUnsavedChanges = true;
+  downloadBar.classList.add('show');
+}
+
+function populateGenreFilter(){
+  const genres = [...new Set(games.map(g => (g.genre || '').trim()).filter(Boolean))].sort((a,b) => a.localeCompare(b, 'pt-BR'));
+  const current = genreFilterEl.value;
+  genreFilterEl.innerHTML = '<option value="">Todos os gêneros</option>' +
+    genres.map(g => `<option value="${escapeHtml(g)}">${escapeHtml(g)}</option>`).join('');
+  if(genres.includes(current)) genreFilterEl.value = current;
+}
+
+function renderCatalog(){
+  statCount.textContent = games.length;
+  populateGenreFilter();
+
+  if(games.length === 0){
+    catalogArea.innerHTML = '<div class="empty"><h3>Nenhum jogo cadastrado ainda</h3><p>O lojista está preparando o estoque. Volte em breve.</p></div>';
+    return;
+  }
+
+  let filtered = [...games];
+  if(searchTerm){
+    const term = searchTerm.toLowerCase();
+    filtered = filtered.filter(g => g.title.toLowerCase().includes(term));
+  }
+  if(genreFilter){
+    filtered = filtered.filter(g => (g.genre || '').trim() === genreFilter);
+  }
+
+  if(filtered.length === 0){
+    catalogArea.innerHTML = '<div class="empty"><h3>Nenhum jogo encontrado</h3><p>Tente outro termo de busca ou gênero.</p></div>';
+    return;
+  }
+
+  const sorted = filtered.sort((a,b) => (b.createdAt||0) - (a.createdAt||0));
+
+  catalogArea.innerHTML = '<div class="grid">' + sorted.map(g => `
+    <div class="card ${selected.has(g.id) ? 'selected' : ''}" data-id="${g.id}">
+      <div class="cover">
+        <div class="check">✓</div>
+        ${g.image ? `<img src="${g.image}" alt="Capa de ${escapeHtml(g.title)}">` : ''}
+        <div class="disc"></div>
+        <div class="sheen"></div>
+      </div>
+      <div class="info">
+        <span class="badge ${g.stock === 'Sob consulta' ? 'unavailable' : ''}">${g.genre ? escapeHtml(g.genre) : (g.stock === 'Sob consulta' ? 'Sob consulta' : 'PS2')}</span>
+        <h3>${escapeHtml(g.title)}</h3>
+        ${g.desc ? `<div class="desc">${escapeHtml(g.desc)}</div>` : ''}
+      </div>
+    </div>
+  `).join('') + '</div>';
+
+  catalogArea.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => toggleSelect(card.getAttribute('data-id')));
+  });
+}
+
+function toggleSelect(id){
+  if(selected.has(id)) selected.delete(id);
+  else selected.add(id);
+  renderCatalog();
+  renderSelBar();
+}
+
+function renderSelBar(){
+  selCount.textContent = selected.size;
+  selBar.classList.toggle('show', selected.size > 0);
+}
+
+function buildListText(){
+  const chosen = games.filter(g => selected.has(g.id));
+  const lines = chosen.map((g, i) => `${i+1}. ${g.title}`);
+  return 'Lista de jogos PS2 para gravar:\n\n' + lines.join('\n');
+}
+
+document.getElementById('viewListBtn').addEventListener('click', () => {
+  const chosen = games.filter(g => selected.has(g.id));
+  const listItems = document.getElementById('listItems');
+  listItems.innerHTML = chosen.map(g => `
+    <li><span>${escapeHtml(g.title)}</span><button data-remove="${g.id}">Remover</button></li>
+  `).join('');
+  listItems.querySelectorAll('[data-remove]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selected.delete(btn.getAttribute('data-remove'));
+      renderCatalog();
+      renderSelBar();
+      document.getElementById('viewListBtn').click();
+    });
+  });
+  document.getElementById('listText').value = buildListText();
+  listModal.classList.add('open');
+});
+
+document.getElementById('closeListBtn').addEventListener('click', () => {
+  listModal.classList.remove('open');
+});
+
+document.getElementById('copyListBtn').addEventListener('click', async () => {
+  const text = document.getElementById('listText').value;
+  const btn = document.getElementById('copyListBtn');
+  try{
+    await navigator.clipboard.writeText(text);
+    btn.textContent = 'Copiado!';
+  }catch(e){
+    const ta = document.getElementById('listText');
+    ta.select();
+    document.execCommand('copy');
+    btn.textContent = 'Copiado!';
+  }
+  setTimeout(() => btn.textContent = 'Copiar lista', 1800);
+});
+
+document.getElementById('clearSelBtn').addEventListener('click', () => {
+  selected.clear();
+  renderCatalog();
+  renderSelBar();
+});
+
+function renderAdminList(){
+  if(games.length === 0){
+    adminList.innerHTML = '<div class="empty"><h3>Nada cadastrado ainda</h3><p>Use o formulário acima para adicionar o primeiro jogo.</p></div>';
+    return;
+  }
+  const sorted = [...games].sort((a,b) => (b.createdAt||0) - (a.createdAt||0));
+  adminList.innerHTML = sorted.map(g => `
+    <div class="admin-row">
+      <img src="${g.image || ''}" alt="">
+      <div class="meta">
+        <strong>${escapeHtml(g.title)}</strong>
+        <span class="mono">${g.genre ? escapeHtml(g.genre) + ' · ' : ''}${escapeHtml(g.stock)}</span>
+      </div>
+      <div class="actions">
+        <button class="icon-btn" data-edit="${g.id}" title="Editar">✎</button>
+        <button class="icon-btn danger" data-del="${g.id}" title="Excluir">✕</button>
+      </div>
+    </div>
+  `).join('');
+
+  adminList.querySelectorAll('[data-edit]').forEach(btn => {
+    btn.addEventListener('click', () => startEdit(btn.getAttribute('data-edit')));
+  });
+  adminList.querySelectorAll('[data-del]').forEach(btn => {
+    btn.addEventListener('click', () => deleteGame(btn.getAttribute('data-del')));
+  });
+}
+
+function startEdit(id){
+  const g = games.find(x => x.id === id);
+  if(!g) return;
+  editingId = id;
+  document.getElementById('fTitle').value = g.title;
+  document.getElementById('fGenre').value = g.genre || '';
+  document.getElementById('fStock').value = g.stock;
+  document.getElementById('fDesc').value = g.desc || '';
+  pendingImage = g.image;
+  document.getElementById('uploadHint').style.display = 'none';
+  const box = document.getElementById('uploadBox');
+  let img = box.querySelector('img');
+  if(!img){
+    img = document.createElement('img');
+    box.prepend(img);
+  }
+  img.src = g.image;
+  document.getElementById('saveBtn').textContent = 'Salvar alterações';
+  formStatus.textContent = 'Editando "' + g.title + '"';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function deleteGame(id){
+  games = games.filter(g => g.id !== id);
+  selected.delete(id);
+  renderAdminList();
+  renderCatalog();
+  renderSelBar();
+  markUnsaved();
+}
+
+function resizeImage(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const maxW = 500;
+        const scale = Math.min(1, maxW / img.width);
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width * scale;
+        canvas.height = img.height * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL('image/jpeg', 0.72));
+      };
+      img.onerror = reject;
+      img.src = e.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+document.getElementById('imgInput').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if(!file) return;
+  try{
+    pendingImage = await resizeImage(file);
+    document.getElementById('uploadHint').style.display = 'none';
+    const box = document.getElementById('uploadBox');
+    let img = box.querySelector('img');
+    if(!img){
+      img = document.createElement('img');
+      box.prepend(img);
+    }
+    img.src = pendingImage;
+  }catch(err){
+    formStatus.textContent = 'Não foi possível ler essa imagem.';
+  }
+});
+
+function resetForm(){
+  document.getElementById('fTitle').value = '';
+  document.getElementById('fGenre').value = '';
+  document.getElementById('fStock').value = 'Disponível';
+  document.getElementById('fDesc').value = '';
+  pendingImage = null;
+  editingId = null;
+  document.getElementById('uploadHint').style.display = 'block';
+  const box = document.getElementById('uploadBox');
+  const img = box.querySelector('img');
+  if(img) img.remove();
+  document.getElementById('imgInput').value = '';
+  document.getElementById('saveBtn').textContent = 'Adicionar ao catálogo';
+}
+
+document.getElementById('saveBtn').addEventListener('click', () => {
+  const title = document.getElementById('fTitle').value.trim();
+  const genre = document.getElementById('fGenre').value.trim();
+  const stock = document.getElementById('fStock').value;
+  const desc = document.getElementById('fDesc').value.trim();
+
+  if(!title){ formStatus.textContent = 'Digite o nome do jogo.'; return; }
+
+  if(editingId){
+    const g = games.find(x => x.id === editingId);
+    g.title = title; g.genre = genre; g.stock = stock; g.desc = desc;
+    if(pendingImage) g.image = pendingImage;
+  }else{
+    games.push({
+      id: 'g_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
+      title, genre, stock, desc,
+      image: pendingImage,
+      createdAt: Date.now()
+    });
+  }
+
+  renderAdminList();
+  renderCatalog();
+  formStatus.textContent = 'Adicionado. Não esqueça de baixar o games.js atualizado.';
+  markUnsaved();
+  resetForm();
+});
+
+document.getElementById('downloadBtn').addEventListener('click', () => {
+  const content = '// Arquivo gerado pelo painel do lojista. Substitua o games.js do seu repositório por este.\n\nconst GAMES_DATA = ' + JSON.stringify(games, null, 2) + ';\n';
+  const blob = new Blob([content], {type: 'text/javascript'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'games.js';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  hasUnsavedChanges = false;
+});
+
+adminToggle.addEventListener('click', () => {
+  loginModal.classList.add('open');
+  pwInput.value = '';
+  pwError.textContent = '';
+  setTimeout(() => pwInput.focus(), 50);
+});
+
+document.getElementById('pwCancel').addEventListener('click', () => {
+  loginModal.classList.remove('open');
+});
+
+function tryLogin(){
+  if(pwInput.value === ADMIN_PASSWORD){
+    loginModal.classList.remove('open');
+    publicView.style.display = 'none';
+    adminPanel.classList.add('open');
+    adminToggle.style.display = 'none';
+    selBar.classList.remove('show');
+  }else{
+    pwError.textContent = 'Senha incorreta.';
+  }
+}
+document.getElementById('pwSubmit').addEventListener('click', tryLogin);
+pwInput.addEventListener('keydown', e => { if(e.key === 'Enter') tryLogin(); });
+
+document.getElementById('backToCatalog').addEventListener('click', () => {
+  if(hasUnsavedChanges && !confirm('Você tem alterações que ainda não foram baixadas. Sair mesmo assim?')) return;
+  adminPanel.classList.remove('open');
+  publicView.style.display = 'block';
+  adminToggle.style.display = 'flex';
+  resetForm();
+  renderSelBar();
+});
+
+searchInput.addEventListener('input', () => {
+  searchTerm = searchInput.value.trim();
+  renderCatalog();
+});
+
+genreFilterEl.addEventListener('change', () => {
+  genreFilter = genreFilterEl.value;
+  renderCatalog();
+});
+
+renderCatalog();
+renderAdminList();
+</script>
+
+</body>
+</html>
